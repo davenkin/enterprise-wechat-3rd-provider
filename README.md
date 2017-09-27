@@ -25,4 +25,4 @@
 
 `java.security.InvalidKeyException:illegal Key Size`
 
-解决方法:https://work.weixin.qq.com/api/doc#10128
+解决方法:https://stackoverflow.com/questions/19856324/exception-in-thread-main-java-security-invalidkeyexception-illegal-key-size-o
