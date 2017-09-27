@@ -1,0 +1,108 @@
+import org.apache.tools.ant.filters.*
+
+import java.time.ZoneId
+import java.time.ZonedDateTime
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE")
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+applicationDefaultJvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+bootRun {
+    systemProperties System.properties
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}
+
+sourceSets {
+    apiTest {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+configurations {
+    apiTestCompile.extendsFrom testCompile
+    apiTestRuntime.extendsFrom testRuntime
+}
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile('io.jsonwebtoken:jjwt:0.7.0')
+
+    compile('commons-codec:commons-codec:1.9')
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
+    runtime files('web')
+
+}
+
+
+processResources {
+    filesMatching('application.yml') {
+        expand([
+                buildNumber: System.getenv('BUILD_NUMBER') ?: "Local",
+                "buildTime": (ZonedDateTime.now((ZoneId.of("Asia/Shanghai")))).toString()
+        ])
+    }
+}
+
+
+task apiTest(type: Test) {
+    testClassesDir = sourceSets.apiTest.output.classesDir
+    classpath = sourceSets.apiTest.runtimeClasspath
+}
+
+
+idea {
+    module {
+        testSourceDirs += file('src/apiTest/java')
+        testSourceDirs += file('src/apiTest/resources')
+        scopes.TEST.plus += [configurations.apiTestCompile]
+        scopes.TEST.plus += [configurations.apiTestRuntime]
+    }
+}
+
+apiTest.mustRunAfter test
+build.dependsOn apiTest
+
+//API Test Code coverage
+task jacocoApiTestReport(type: JacocoReport) {
+    sourceSets sourceSets.main
+    executionData apiTest
+}
+
+//Unit Test and API Test Code coverage all together
+task jacocoAllTestReport(type: JacocoReport) {
+    sourceSets sourceSets.main
+    executionData test, apiTest
+}
+
+
+
+

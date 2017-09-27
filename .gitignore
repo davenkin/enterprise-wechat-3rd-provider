@@ -1,0 +1,11 @@
+target
+*.iml
+*.ipr
+*.iws
+build
+out
+.gradle
+tmp.json
+.shelf
+tmp.html
+**/application.yml
