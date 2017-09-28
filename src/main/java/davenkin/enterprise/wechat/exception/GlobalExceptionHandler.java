@@ -27,6 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler()
     @ResponseBody
     public ResponseEntity<?> handleException(Exception ex) {
+        ex.printStackTrace();
         HttpStatus httpStatus = resolveAnnotatedResponseStatus(ex);
         String message = ex.getMessage();
         if (message == null) {

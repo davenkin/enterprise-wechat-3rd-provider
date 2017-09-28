@@ -1,0 +1,33 @@
+.navbar {
+    position: fixed;
+    height: 8vh;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fafafa;
+    box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, .45);
+}
+
+.navbar__list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3vh;
+}
+
+.navbar__link-active {
+    background-color: lightgray;
+}
+
+.navbar__link {
+    display: inline-block;
+    padding: 1vh 3vh;
+}
+
+.navbar__link:hover {
+    background-color: lightgrey;
+}
+
+.navbar__icon {
+    max-height: 6vh;
+    width: auto;
+}

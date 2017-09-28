@@ -1,0 +1,42 @@
+.all-birthdays {
+    overflow: scroll;
+    height: 84vh;
+    margin-top: 8vh;
+    width: 100%;
+}
+
+.birthday-item {
+    height: 10vh;
+    line-height: 10vh;
+    background-color: white;
+    padding-left: 2vw;
+    border-left: 2vh solid #FF4081;
+    margin-top: 4vh;
+    margin-left: 2vh;
+    color: #FF4081;
+}
+
+.birthday-item__name {
+    width: 30vw;
+    display: inline-block;
+}
+
+.birthday-item__date {
+    display: inline-block;
+}
+
+.birthday-item__detail-link {
+    display: block;
+    float: right;
+    height: 10vh;
+    padding-right: 4vh;
+    padding-left: 4vh;
+    text-decoration: none;
+    cursor: pointer;
+    color: #FF4081;
+}
+
+.birthday-item__detail-link:hover {
+    background-color: #FF4081;
+    color: white;
+}

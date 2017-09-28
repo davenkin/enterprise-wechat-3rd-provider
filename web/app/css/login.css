@@ -1,0 +1,26 @@
+
+.login__phone {
+    margin-top: 10vh;
+    background-image: url('../images/phone.svg');
+}
+
+.login__password {
+    margin-top: 4vh;
+    background-image: url('../images/password.svg');
+}
+
+.login__button {
+    margin-top: 4vh;
+}
+
+.login__footer {
+    margin-top: 5vh;
+}
+
+.login__forgot-password {
+    float: right;
+}
+
+.login__register {
+    float: left;
+}

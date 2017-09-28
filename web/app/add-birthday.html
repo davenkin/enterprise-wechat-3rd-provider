@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>忘乎生日</title>
+    <meta name="description" content="免费的短信生日提醒"/>
+    <meta name="keywords" content="生日, 生日提醒, 生日备忘"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<header class="header">
+    <img class="header__logo centered" src="images/logo.png" alt="忘乎生日"/>
+</header>
+
+<div class="main-wrapper">
+
+    <section class="add-birthday">
+        <div class="add-birthday__title">添加生日提醒</div>
+        <div class="add-birthday__name">
+            <label class="add-birthday__label" for="name">你如何称呼TA:</label>
+            <input id="name" class="input" type="text" placeholder="例如:大舅/小明/侄女等">
+        </div>
+
+        <div>
+            <label class="add-birthday__label" for="calendar">TA的生日:</label>
+            <div class="add-birthday__birthday">
+                <select id="calendar" class="add-birthday__calendar">
+                    <option value="lunar">阴历</option>
+                    <option value="solar">阳历</option>
+                </select>
+                <input id="month" class="input add-birthday__month" type="tel">
+                <label for="month" class="add-birthday-black">月</label>
+                <input id="date" class="input add-birthday__date" type="tel">
+                <label for="date" class="add-birthday-black">日</label>
+            </div>
+
+        </div>
+
+        <div><label class="add-birthday__label" for="year">TA生于哪一年(可选):</label>
+            <input id="year" class="input" type="tel" placeholder="例如:1986">
+        </div>
+
+
+        <div><label class="add-birthday__label" for="predays">提前多久短信通知你:</label>
+            <select id="predays" class="add-birthday__predays">
+                <option value="predays1">一天</option>
+                <option value="predays2">两天</option>
+                <option value="predays3">三天</option>
+                <option value="predays7">一周</option>
+            </select>
+        </div>
+
+
+        <a class="a-button margin-top-4vh " href="index.html">添加</a>
+
+    </section>
+
+</div>
+
+<nav class="navbar">
+    <ul class="navbar__list">
+        <li>
+            <a class="navbar__link " href="index.html">
+                <img class="navbar__icon" src="images/list.svg">
+            </a>
+        </li>
+        <li>
+            <a class="navbar__link navbar__link-active" href="index.html">
+                <img class="navbar__icon" src="images/add.svg">
+            </a>
+        </li>
+        <li>
+            <a class="navbar__link" href="login.html">
+                <img class="navbar__icon" src="images/settings.svg">
+            </a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+
+</html>

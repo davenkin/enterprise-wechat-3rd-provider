@@ -1,0 +1,19 @@
+.register__phone {
+    background-image: url('../images/phone.svg');
+}
+
+.register__identify {
+    width: 45%;
+    background-image: url('../images/identifying-code.svg');
+
+}
+
+.register__identify-button {
+    float: right;
+    width: 50%;
+}
+
+.register__password {
+    background-image: url('../images/password.svg');
+}
+
