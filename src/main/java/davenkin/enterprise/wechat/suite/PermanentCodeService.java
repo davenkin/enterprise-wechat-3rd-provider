@@ -18,12 +18,14 @@ public class PermanentCodeService {
     private SuiteProperties suiteProperties;
     private SuiteAccessTokenHolder suiteAccessTokenHolder;
     private RestTemplate restTemplate;
+    private PermanentCodeRepository permanentCodeRepository;
 
     @Autowired
-    public PermanentCodeService(SuiteProperties suiteProperties, SuiteAccessTokenHolder suiteAccessTokenHolder, RestTemplate restTemplate) {
+    public PermanentCodeService(SuiteProperties suiteProperties, SuiteAccessTokenHolder suiteAccessTokenHolder, RestTemplate restTemplate, PermanentCodeRepository permanentCodeRepository) {
         this.suiteProperties = suiteProperties;
         this.suiteAccessTokenHolder = suiteAccessTokenHolder;
         this.restTemplate = restTemplate;
+        this.permanentCodeRepository = permanentCodeRepository;
     }
 
     public Map registerCorp(String authCode) {
@@ -34,18 +36,12 @@ public class PermanentCodeService {
         String url = UriComponentsBuilder.fromHttpUrl(PERMANENT_CODE_URL).buildAndExpand(suiteAccessTokenHolder.accessToken()).toString();
 
         Map map = restTemplate.postForObject(url, request, Map.class);
-        try {
-            System.out.println("===" + map.getClass());
-            String permanent_code = (String) map.get("permanent_code");
-            System.out.println("===permenet code:" + permanent_code);
-            Object auth_corp_info = map.get("auth_corp_info");
-            System.out.println("===auth corp info" + auth_corp_info.getClass().toString());
-            if (auth_corp_info instanceof Map) {
-                System.out.println("===corp id" + ((Map) auth_corp_info).get("corpid"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String permanent_code = (String) map.get("permanent_code");
+        Object auth_corp_info = map.get("auth_corp_info");
+        String corpid = (String) ((Map) auth_corp_info).get("corpid");
+        System.out.println("===corp id" + corpid);
+        System.out.println("===auth corp info" + auth_corp_info.getClass().toString());
+        permanentCodeRepository.save(corpid, permanent_code);
         return map;
     }
 }
