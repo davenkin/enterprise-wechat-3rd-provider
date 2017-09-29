@@ -54,6 +54,11 @@ dependencies {
     compile('io.jsonwebtoken:jjwt:0.7.0')
 
     compile('commons-codec:commons-codec:1.9')
+    compile('org.springframework:spring-oxm')
+
+    compile('com.thoughtworks.xstream:xstream:1.4.9')
+// https://mvnrepository.com/artifact/org.jooq/joox
+    compile group: 'org.jooq', name: 'joox', version: '1.4.0'
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')

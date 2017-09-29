@@ -1,4 +1,4 @@
-package davenkin.enterprise.wechat.event;
+package davenkin.enterprise.wechat.business;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
