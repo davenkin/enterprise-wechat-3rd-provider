@@ -71,4 +71,13 @@ public class AllInOneSuiteEvent {
         suiteTicketEvent.setSuiteId(this.suiteId);
         return suiteTicketEvent;
     }
+
+    public AuthCodeEvent toAuthCodeEvent() {
+        AuthCodeEvent authCodeEvent = new AuthCodeEvent();
+        authCodeEvent.setInfoType(this.infoType);
+        authCodeEvent.setSuiteId(this.suiteId);
+        authCodeEvent.setTimestamp(this.timestamp);
+        authCodeEvent.setAuthCode(this.authCode);
+        return authCodeEvent;
+    }
 }

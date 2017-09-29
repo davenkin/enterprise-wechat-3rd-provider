@@ -30,7 +30,7 @@ public class SuiteAccessTokenHolder {
         this.suiteProperties = suiteProperties;
     }
 
-    @Scheduled(cron = "0 0/15 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void updateSuiteAccessToken() {
         logger.info("Try get suite access token.");
         SuiteAccessTokenRequest request = new SuiteAccessTokenRequest(suiteProperties.getSuiteId(), suiteProperties.getSuiteSecret(), suiteTicketHolder.ticket());

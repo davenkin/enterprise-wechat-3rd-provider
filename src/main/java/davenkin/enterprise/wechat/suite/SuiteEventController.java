@@ -2,6 +2,7 @@ package davenkin.enterprise.wechat.suite;
 
 import com.qq.weixin.mp.aes.AesException;
 import davenkin.enterprise.wechat.suite.event.AllInOneSuiteEvent;
+import davenkin.enterprise.wechat.suite.event.AuthCodeEvent;
 import davenkin.enterprise.wechat.suite.event.SuiteEventXmlParser;
 import davenkin.enterprise.wechat.suite.event.SuiteTicketEvent;
 import org.slf4j.Logger;
@@ -25,6 +26,9 @@ public class SuiteEventController {
 
     @Autowired
     private MessageCryptor messageCryptor;
+
+    @Autowired
+    private PermanentCodeService permanentCodeService;
 
     @GetMapping(value = "/events")
     public String validateSuite(@RequestParam("echostr") String echoStr,
@@ -52,6 +56,12 @@ public class SuiteEventController {
             case "suite_ticket": {
                 SuiteTicketEvent suiteTicketEvent = systemEvent.toSuiteTicketEvent();
                 suiteTicketHolder.updateTicket(suiteTicketEvent.getSuiteTicket());
+                break;
+            }
+
+            case "create_auth": {
+                AuthCodeEvent authCodeEvent = systemEvent.toAuthCodeEvent();
+                permanentCodeService.registerCorp(authCodeEvent.getAuthCode());
                 break;
             }
 
